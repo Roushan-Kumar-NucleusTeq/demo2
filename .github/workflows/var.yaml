@@ -25,13 +25,12 @@ jobs:
             #     Value: 1
             #     EnvironmentName: "TAG_NAME"
             #     RepoId: ${{ github.repository_id }}
-            #     Token: ${{ secrets.GITHUB_TOKEN  }}
+            #     Token: ${{ secrets.TOKEN_GITHUB  }}
 
             - name : Update Repo Variable
               uses: action-pack/set-variable@v1
               with:
                 name: 'VAR_TAG_NAME_'
                 value: 2
-                token: ${{secrets.GITHUB_TOKEN}}
-              env:
-                GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
+                token: ${{secrets.TOKEN_GITHUB}}
+              
