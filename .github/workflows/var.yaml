@@ -1,0 +1,37 @@
+name: Test variable
+
+on:
+    push:
+      branches:
+        - main
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        permissions:
+            contents: write
+            pull-requests: write
+            repository-projects: write
+
+        steps:
+          
+            - name: Checkout code
+              uses: actions/checkout@v2
+
+            - name: Add Environment Variable
+              uses: MandalAutomations/Update-Environment-Variable@v1
+              with:
+                Name: "TAG_NAME"
+                Value: 1
+                EnvironmentName: "TAG_NAME"
+                RepoId: ${{ github.repository_id }}
+                Token: ${{ secrets.GITHUB_TOKEN  }}
+
+            - name : Update Repo Variable
+              uses: action-pack/set-variable@v1
+              with:
+                name: 'VAR_TAG_NAME'
+                value: 2
+                token: ${{secrets.GITHUB_TOKEN}}
+              env:
+                GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
